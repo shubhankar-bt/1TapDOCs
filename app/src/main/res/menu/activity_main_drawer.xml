@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_User_Account"
+            android:icon="@drawable/ic_account_box_24"
+            android:title="Your Profile"/>
+
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings_24"
+            android:title="Settings"/>
+        <item
+            android:id="@+id/nav_signOut"
+            android:icon="@drawable/ic_baseline_subdirectory_arrow_left_24"
+            android:title="Sign Out"/>
+
+
+    </group>
+
+    <item android:title="Informations" >
+
+        <menu>
+
+           <item
+              android:id="@+id/nav_Help_centre"
+              android:icon="@drawable/ic_baseline_help_center_24"
+              android:title="Help Centre" />
+           <item
+               android:id="@+id/nav_about_us"
+               android:icon="@drawable/ic_about_us_logo"
+               android:title="About Us" />
+
+            <item
+                android:id="@+id/footer_spacer_1"
+                android:checkable="false"
+                android:enabled="false"
+                android:orderInCategory="200"
+                android:title="" />
+            <item
+                android:id="@+id/footer_spacer_2"
+                android:checkable="false"
+                android:enabled="false"
+                android:orderInCategory="200"
+                android:title="" />
+            <item
+                android:id="@+id/footer_spacer_4"
+                android:checkable="false"
+                android:enabled="false"
+                android:orderInCategory="200"
+                android:title="" />
+            <item
+                android:id="@+id/footer_spacer_3"
+                android:checkable="false"
+                android:enabled="false"
+                android:orderInCategory="200"
+                android:title=""/>
+
+        </menu>
+
+
+    </item>
+
+
+
+
+
+
+
+
+
+</menu>
+

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1057641205795",
+    "project_id": "tapdocs-a58a4",
+    "storage_bucket": "tapdocs-a58a4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1057641205795:android:292b24cccb0ae4ed9be196",
+        "android_client_info": {
+          "package_name": "com.shubhankarsudip.a1tapdocs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1057641205795-vu94s74o3pqa44e8lb4nuat4t2u7hat2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSvaPNK3VGzCpm3_H5ErLF7l-hvQEVQkY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1057641205795-vu94s74o3pqa44e8lb4nuat4t2u7hat2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
