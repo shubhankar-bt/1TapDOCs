@@ -5,20 +5,26 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/appicon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_round3"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.1TapDOCs">
-
-
         <activity
-            android:name=".MyCustomAppIntro"
-            android:exported="true"
-            android:label="My Custom AppIntro"/>
+            android:name=".Activity.NoteMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.NoteTakerActivity"
+            android:exported="false" />
         <activity
             android:name=".PrivacyPolicyActivity"
             android:exported="true" />

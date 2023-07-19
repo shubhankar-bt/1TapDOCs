@@ -3,25 +3,19 @@ package com.shubhankarsudip.a1tapdocs;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+
 import java.util.Calendar;
 
 import mehdi.sakout.aboutpage.AboutPage;
 import mehdi.sakout.aboutpage.Element;
-import spencerstudios.com.bungeelib.Bungee;
 
-import android.os.Bundle;
-import android.widget.Toolbar;
-
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.FitCenter;
 
 public class AboutUsActivity extends AppCompatActivity {
 
@@ -31,23 +25,21 @@ public class AboutUsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about_us);
 
 
-
-
-
         Element adsElement = new Element();
         View aboutPage = new AboutPage(this)
                 .isRTL(false)
-                .setDescription("In our App a user can upload their all necessary things and they can access those from anywhere anytime without any trouble. Store As much files you want.")
-                .addItem(new Element().setTitle("Version 1.0").setGravity(Gravity.CENTER))
+                .setDescription("Hey welcome to 1TapDOCs. Make sure to rate us on PlayStore")
+                .addItem(new Element().setTitle("Version 1.0.5").setGravity(Gravity.CENTER))
                 .addGroup("Developer - Shubhankar Das")
                 .addGroup("Idea - Sanket Tarafder, Sudip Maiti, Pritam Saha, Shubhankar Das\n" +
+                        "\n" +
                         "College - Kalyani Government Engineering College, West Bengal")
                 .addGroup("CONNECT WITH US!")
                 .addEmail("shubhankardas.kgec@gmail.com")
-                .addWebsite("https://picsum.photos/200")
-                .addYoutube("www.youtube.com/channel/UCmEm0I1-9ZreRE38VKbRkmg")   //Enter your youtube link here (replace with my channel link)
-                .addPlayStore("com.example.yourprojectname")   //Replace all this with your package name
-                .addInstagram("www.instagram.com/_iamshubhankar/")    //Your instagram id
+                .addWebsite("https://matias.ma/nsfw/")
+                .addYoutube("https://www.youtube.com/channel/UCmEm0I1-9ZreRE38VKbRkmg/featured")   //Enter your youtube link here (replace with my channel link)
+                .addPlayStore("https://play.google.com/store/apps/details?id=com.shubhankarsudip.a1tapdocs")   //Replace all this with your package name
+                .addInstagram("_iamshubhankar")    //Your instagram id
                 .addItem(createCopyright())
                 .create();
         setContentView(aboutPage);
@@ -55,7 +47,7 @@ public class AboutUsActivity extends AppCompatActivity {
     private Element createCopyright()
     {
         Element copyright = new Element();
-        @SuppressLint("DefaultLocale") final String copyrightString = String.format("Copyright %d by Shubhankar", Calendar.getInstance().get(Calendar.YEAR));
+        @SuppressLint("DefaultLocale") final String copyrightString = String.format("Copyright %d by @Shubhankar", Calendar.getInstance().get(Calendar.YEAR));
         copyright.setTitle(copyrightString);
         // copyright.setIcon(R.mipmap.ic_launcher);
         copyright.setGravity(Gravity.CENTER);
@@ -74,13 +66,13 @@ public class AboutUsActivity extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent = new Intent(AboutUsActivity.this,DashboardActivity.class);
         startActivity(intent);
-        Bungee.slideRight(this);
+        Animatoo.animateSlideRight(this);
         finish();
     }
 
     public void goToHome (View view){
         startActivity(new Intent(this, DashboardActivity.class));
-        Bungee.inAndOut(this);
+        Animatoo.animateSlideRight(this);
 
     }
 }

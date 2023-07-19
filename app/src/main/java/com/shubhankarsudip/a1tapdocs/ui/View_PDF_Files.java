@@ -3,6 +3,8 @@ package com.shubhankarsudip.a1tapdocs.ui;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
@@ -11,16 +13,25 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -29,24 +40,35 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.shubhankarsudip.a1tapdocs.Adapters.PdfListAdapter;
+import com.shubhankarsudip.a1tapdocs.Adapters.PdfListAdapter2;
 import com.shubhankarsudip.a1tapdocs.DashboardActivity;
+import com.shubhankarsudip.a1tapdocs.DocumentActivity2;
+import com.shubhankarsudip.a1tapdocs.PasswordViewAdapter;
 import com.shubhankarsudip.a1tapdocs.R;
+import com.shubhankarsudip.a1tapdocs.ViewPasswordsActivity;
 
 import java.io.File;
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
 
-import spencerstudios.com.bungeelib.Bungee;
 
 public class View_PDF_Files extends AppCompatActivity {
 
     ListView myPDfListView;
-    DatabaseReference databaseReference;
+    RecyclerView recyclerPdf;
+    DatabaseReference databaseReference,dbRef;
     List<uploadPDF> uploadPDFS;
     String[] uploads;
     ProgressBar ProgressBarloader;
     LottieAnimationView noDataAnimation;
+    String Key;
+    String placeId = "";
+    private PdfListAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,27 +78,47 @@ public class View_PDF_Files extends AppCompatActivity {
         myPDfListView = (ListView) findViewById(R.id.myListView);
         ProgressBarloader = (ProgressBar)findViewById(R.id.pdfViewLoader);
         noDataAnimation = findViewById(R.id.noDataAnimation);
+        recyclerPdf = findViewById(R.id.recyclerPdf);
 
         uploadPDFS = new ArrayList<>();
-
-
-
-
         viewAllFiles();
 
-        myPDfListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                uploadPDF uploadPDF = uploadPDFS.get(position);
-                Uri uri = Uri.parse(uploadPDF.getUrl());
-
-                Intent intent = new Intent();
-                intent.setType(Intent.ACTION_VIEW);
-                intent.setDataAndType(Uri.parse(uploadPDF.getUrl()), "application/*");
-                startActivity(intent);
-
-            }
-        });
+//        myPDfListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//               // uploadPDF uploadPDF = uploadPDFS.get(position);
+//               // Uri uri = Uri.parse(uploadPDF.getUrl());
+//
+//                try {
+//                    uploadPDF uploadPDF = uploadPDFS.get(position);
+//                    Uri uri = Uri.parse(uploadPDF.getUrl());
+//
+//                    Intent intent = new Intent(Intent.ACTION_VIEW);
+//                    if (uri.toString().contains(".doc") || uri.toString().contains(".docx")) {
+//                        // Word document
+//                        intent.setDataAndType(uri, "application/msword");
+//                    } else if (uri.toString().contains(".pdf")) {
+//                        // PDF file
+//                        intent.setDataAndType(uri, "application/pdf");
+//                    } else if (uri.toString().contains(".ppt") || uri.toString().contains(".pptx")) {
+//                        // Powerpoint file
+//                        intent.setDataAndType(uri, "application/vnd.ms-powerpoint");
+//                    } else if (uri.toString().contains(".xls") || uri.toString().contains(".xlsx")) {
+//                        // Excel file
+//                        intent.setDataAndType(uri, "application/vnd.ms-excel");
+//                    } else {
+//                        intent.setDataAndType(uri, "*/*");
+//                    }
+//
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    View_PDF_Files.this.startActivity(intent);
+//                } catch (ActivityNotFoundException e) {
+//                    Toast.makeText(View_PDF_Files.this, "No application found which can open the file", Toast.LENGTH_SHORT).show();
+//                }
+//
+//
+//            }
+//        });
 
 
 
@@ -98,18 +140,20 @@ public class View_PDF_Files extends AppCompatActivity {
         DatabaseReference mDatabase;
         databaseReference = FirebaseDatabase.getInstance().getReference().child("uploads").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-       // databaseReference = FirebaseDatabase.getInstance().getReference("uploads");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (!snapshot.exists()){
                     ProgressBarloader.setVisibility(View.GONE);
-
+                    recyclerPdf.setVisibility(View.GONE);
                     noDataAnimation.setVisibility(View.VISIBLE);
                 }else {
                     for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                        uploadPDF uploadPDF = postSnapshot.getValue(com.shubhankarsudip.a1tapdocs.ui.uploadPDF.class);
-                        uploadPDFS.add(uploadPDF);
+                        uploadPDF uploadPDF2 = postSnapshot.getValue(uploadPDF.class);
+                        uploadPDF2.setKey(postSnapshot.getKey());
+                        Log.d("View_PDF_Files", "getkey id of user pdf:" + postSnapshot.getKey());
+                        uploadPDFS.add(uploadPDF2);
+
                     }
                     uploads = new String[uploadPDFS.size()];
 
@@ -117,13 +161,20 @@ public class View_PDF_Files extends AppCompatActivity {
                         uploads[i] = uploadPDFS.get(i).getName();
                     }
 
-                    customAdapter customAdapter = new customAdapter();
                     noDataAnimation.setVisibility(View.GONE);
-
-                    myPDfListView.setAdapter(customAdapter);
                     ProgressBarloader.setVisibility(View.GONE);
-                }
 
+
+
+
+                    recyclerPdf.setHasFixedSize(true);
+                    recyclerPdf.setLayoutManager(new LinearLayoutManager(View_PDF_Files.this));
+                    adapter = new PdfListAdapter(uploadPDFS, View_PDF_Files.this);
+                    recyclerPdf.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+
+
+                }
 
             }
 
@@ -135,6 +186,8 @@ public class View_PDF_Files extends AppCompatActivity {
             }
         });
     }
+
+
     class customAdapter extends BaseAdapter
     {
 
@@ -159,15 +212,21 @@ public class View_PDF_Files extends AppCompatActivity {
            TextView textView = myView.findViewById(R.id.pdfNameText);
            textView.setSelected(true);
            textView.setText(uploads[position]);
+           uploadPDF data = uploadPDFS.get(position);
+           String Key = data.getKey();
+            return myView;
 
-           return myView;
         }
+
+
+
     }
+
 
 
     public void goToHome (View view){
         startActivity(new Intent(this, DashboardActivity.class));
-        Bungee.inAndOut(this);
+        Animatoo.animateSlideRight(this);
 
     }
 
@@ -175,6 +234,6 @@ public class View_PDF_Files extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         super.onBackPressed();
-        Bungee.slideRight(this); //fire the slide left animation
+        Animatoo.animateSlideRight(this);
     }
 }

@@ -9,7 +9,9 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import spencerstudios.com.bungeelib.Bungee;
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+
+
 
 public class PrivacyPolicyActivity extends AppCompatActivity {
 
@@ -37,14 +39,14 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(PrivacyPolicyActivity.this,SettingActivity.class);
-        Bungee.slideRight(this);
+        Animatoo.animateSlideRight(this);
         startActivity(intent);
         finish();
     }
 
     public void goToHome (View view){
         startActivity(new Intent(this, DashboardActivity.class));
-        Bungee.inAndOut(this);
+        Animatoo.animateSlideRight(this);
         finish();
     }
 

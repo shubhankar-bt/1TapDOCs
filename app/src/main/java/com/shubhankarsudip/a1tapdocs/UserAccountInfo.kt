@@ -12,10 +12,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.activity_user_account_info.*
-import spencerstudios.com.bungeelib.Bungee
-import com.google.android.gms.tasks.Task
 
-import androidx.annotation.NonNull
+import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 
@@ -43,7 +41,6 @@ class UserAccountInfo : AppCompatActivity() {
 
 
 
-
         mAuth = FirebaseAuth.getInstance()
         val currentUser = mAuth.currentUser
 
@@ -55,7 +52,7 @@ class UserAccountInfo : AppCompatActivity() {
 
     fun goToHome(view: View?) {
         startActivity(Intent(this, DashboardActivity::class.java))
-        Bungee.inAndOut(this)
+        Animatoo.animateSlideRight(this)
     }
 
     fun Signout(view: android.view.View) {
@@ -63,7 +60,7 @@ class UserAccountInfo : AppCompatActivity() {
         val intent = Intent(this, SignInActivity::class.java)
         startActivity(intent)
         revokeAccess()
-        Bungee.inAndOut(this)
+        Animatoo.animateSlideRight(this)
         finishAffinity()
         Toast.makeText(this@UserAccountInfo, "Signed out, sign in again!!", Toast.LENGTH_SHORT).show()
 
@@ -79,7 +76,7 @@ class UserAccountInfo : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        Bungee.slideRight(this) //fire the slide left animation
+        Animatoo.animateSlideRight(this)
     }
 
 }

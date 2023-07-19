@@ -20,12 +20,13 @@
 
     <TextView
         android:id="@+id/textView1"
+        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:text="1TapDOCs"
         android:textColor="#1E88E5"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintStart_toStartOf="@+id/toolbar"
@@ -43,18 +44,17 @@
         app:layout_constraintTop_toTopOf="parent"
         android:onClick="goToHome"/>
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="CARDS"
-        android:textColor="@color/black"
-        android:textSize="28sp"
-        android:textStyle="bold"
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="250dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardview5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/cards" />
 
 
 
@@ -62,7 +62,7 @@
         android:id="@+id/viewCardButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="40dp"
         android:backgroundTint="@color/drawerColor"
         android:text="View Cards"
         android:onClick="openViewCardActivity"
@@ -70,15 +70,17 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardview5"
         style="@style/CardView"
+        android:layout_marginTop="80dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:foregroundGravity="center"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/viewCardButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -116,7 +118,7 @@
                 android:textSize="14sp"
                 android:textStyle="italic" />
 
-            <EditText
+            <com.androidwidgets.formatedittext.widgets.FormatEditText
                 android:id="@+id/cardNumber"
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
@@ -127,6 +129,7 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="15dp"
                 android:hint="Enter card number"
+                android:imeOptions="actionSend"
                 android:inputType="number"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
@@ -160,6 +163,7 @@
                 android:layout_marginTop="25dp"
                 android:hint="Enter Expiry Date"
                 android:inputType="date"
+                android:maxLength="5"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
@@ -175,6 +179,7 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="25dp"
                 android:hint="Enter CVV"
+                android:maxLength="3"
                 android:inputType="datetime"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
@@ -187,10 +192,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_below="@+id/categoryCard"
-                android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="260dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="40dp"
                 android:layout_marginBottom="10dp"
@@ -198,6 +201,7 @@
                 android:text="Add"
                 android:textColor="@color/white"
                 android:textSize="12sp" />
+
 
             <Spinner
                 android:id="@+id/categoryCard"

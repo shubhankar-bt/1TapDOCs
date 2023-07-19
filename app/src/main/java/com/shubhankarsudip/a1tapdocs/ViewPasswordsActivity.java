@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,7 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import spencerstudios.com.bungeelib.Bungee;
+
 
 public class ViewPasswordsActivity extends AppCompatActivity {
 
@@ -103,8 +104,7 @@ public class ViewPasswordsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         super.onBackPressed();
-        Bungee.slideRight(this);
-    }
+        Animatoo.animateSlideRight(this);    }
 
 
 }

@@ -1,155 +1,292 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="12dp"
-    >
+    android:layout_height="210dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="5dp"
+    app:cardBackgroundColor="@color/white"
+    android:layout_margin="10dp">
 
-    <LinearLayout
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:visibility="gone"-->
+<!--        android:orientation="vertical">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="170dp"-->
+<!--            android:background="@drawable/debit_card2"-->
+<!--            android:padding="6dp"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:weightSum="2">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="150dp"-->
+<!--                android:layout_weight="0.4"-->
+<!--                android:orientation="vertical"-->
+<!--                android:visibility="gone"-->
+<!--                android:outlineProvider="paddedBounds"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:paddingLeft="15dp"-->
+<!--                >-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:id="@+id/DefaultNameText"-->
+<!--                    android:paddingBottom="6dp"-->
+<!--                    android:typeface="sans"-->
+<!--                    android:text="Name -"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="15sp"/>-->
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:id="@+id/DefaultAccountNoText"-->
+<!--                    android:text="Card No. -" android:typeface="sans"-->
+<!--                    android:paddingBottom="7dp"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="15sp"/>-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:typeface="sans"-->
+<!--                    android:id="@+id/DefaultBankNameText"-->
+<!--                    android:paddingBottom="6dp"-->
+<!--                    android:text="Bank -"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="15sp"/>-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:id="@+id/DefaultExpiryDateText"-->
+<!--                    android:text="Expiry Date -"-->
+<!--                    android:typeface="sans"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:paddingBottom="6dp"-->
+<!--                    android:textSize="15sp"/>-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:id="@+id/DefaultCvvNumberText"-->
+<!--                    android:paddingBottom="3dp"-->
+<!--                    android:text="CVV -"-->
+<!--                    android:typeface="sans"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="15sp"/>-->
+
+
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:outlineProvider="paddedBounds"-->
+<!--                android:layout_weight="1.6"-->
+<!--                android:padding="6dp"-->
+<!--                android:orientation="vertical"-->
+<!--                android:paddingRight="12dp"-->
+<!--                android:gravity="center_vertical">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:id="@+id/UserCardName"-->
+<!--                    android:paddingBottom="3dp"-->
+<!--                    android:text="Shubhankar Das"-->
+<!--                    android:typeface="monospace"-->
+<!--                    android:layout_marginLeft="5dp"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="18sp"/>-->
+<!--                 <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:id="@+id/UserCardNumber"-->
+<!--                     android:paddingBottom="3dp"-->
+<!--                     android:typeface="monospace"-->
+<!--                     android:layout_marginLeft="5dp"-->
+<!--                    android:text="2971293785566"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="18sp"/>-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:id="@+id/UserBankName"-->
+<!--                    android:layout_marginLeft="5dp"-->
+<!--                    android:typeface="monospace"-->
+<!--                    android:paddingBottom="3dp"-->
+<!--                    android:text="United Bank of India"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="18sp"/>-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="5dp"-->
+<!--                    android:id="@+id/UserCardExpiryDate"-->
+<!--                    android:text="08/24"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:typeface="monospace"-->
+<!--                    android:paddingBottom="3dp"-->
+<!--                    android:textSize="18sp"/>-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:id="@+id/UserCardCvvNumber"-->
+<!--                    android:paddingBottom="3dp"-->
+<!--                    android:typeface="monospace"-->
+<!--                    android:layout_marginLeft="5dp"-->
+<!--                    android:text="567"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="18sp"/>-->
+
+
+
+
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
+<!--    </LinearLayout>-->
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/moreBtn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/more_black" />
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardView8"
             android:layout_width="match_parent"
-            android:layout_height="170dp"
-            android:background="@drawable/newdesign"
-            android:padding="6dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <LinearLayout
-                android:layout_width="50dp"
-                android:layout_height="150dp"
-                android:layout_weight="0.5"
-                android:orientation="vertical"
-                android:outlineProvider="paddedBounds"
-                android:gravity="center_vertical"
-                android:paddingLeft="30dp"
-                >
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/DefaultNameText"
-                    android:paddingBottom="6dp"
-                    android:typeface="sans"
-                    android:text="Name -"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/DefaultAccountNoText"
-                    android:text="Card No. -" android:typeface="sans"
-                    android:paddingBottom="7dp"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:typeface="sans"
-                    android:id="@+id/DefaultBankNameText"
-                    android:paddingBottom="6dp"
-                    android:text="Bank -"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/DefaultExpiryDateText"
-                    android:text="Expiry Date -"
-                    android:typeface="sans"
-                    android:textColor="@color/black"
-                    android:paddingBottom="6dp"
-                    android:textSize="15sp"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/DefaultCvvNumberText"
-                    android:paddingBottom="3dp"
-                    android:text="CVV -"
-                    android:typeface="sans"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"/>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:outlineProvider="paddedBounds"
-                android:layout_weight="1.5"
-                android:padding="6dp"
-                android:orientation="vertical"
-                android:paddingRight="12dp"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/UserCardName"
-                    android:paddingBottom="3dp"
-                    android:text="Shubhankar Das"
-                    android:typeface="monospace"
-                    android:layout_marginLeft="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"/>
-                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/UserCardNumber"
-                     android:paddingBottom="3dp"
-                     android:typeface="monospace"
-                     android:layout_marginLeft="5dp"
-                    android:text="2971293785566"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/UserBankName"
-                    android:layout_marginLeft="5dp"
-                    android:typeface="monospace"
-                    android:paddingBottom="3dp"
-                    android:text="Central Bank Of India"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:id="@+id/UserCardExpiryDate"
-                    android:text="08/24"
-                    android:textColor="@color/black"
-                    android:typeface="monospace"
-                    android:paddingBottom="3dp"
-                    android:textSize="18sp"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/UserCardCvvNumber"
-                    android:paddingBottom="3dp"
-                    android:typeface="monospace"
-                    android:layout_marginLeft="5dp"
-                    android:text="567"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"/>
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="3dp"
+            android:layout_marginVertical="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="30dp">
 
 
 
+        <RelativeLayout
+            android:id="@+id/cardBac"
+            android:layout_width="match_parent"
+            android:background="@drawable/debit_card2"
+            android:layout_height="match_parent">
 
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
 
 
+            <TextView
+                android:id="@+id/UserBankName2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/comfortaa_semibold"
+                android:text="State Bank Of India"
+                android:textColor="@color/grey_active_light"
+                android:textSize="12sp" />
+
+
+            <TextView
+                android:id="@+id/UserCardNumber2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="35dp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:letterSpacing=".2"
+                android:text="0000 0000 0000 0000"
+                android:textColor="@color/grey_active_light"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/uptoText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/UserCardNumber2"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Valid Upto"
+                android:textColor="@color/grey_active_light"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/UserCardExpiryDate2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/UserCardNumber2"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/uptoText"
+                android:fontFamily="@font/comfortaa_semibold"
+                android:text="08/25"
+                android:textColor="@color/grey_active_light"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/cvvText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/UserCardNumber2"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/UserCardExpiryDate2"
+                android:fontFamily="@font/poppins_bold"
+                android:text="CVV"
+                android:textColor="@color/grey_active_light"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/UserCardCvvNumber2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/UserCardNumber2"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/cvvText"
+                android:fontFamily="@font/comfortaa_semibold"
+                android:text="08/25"
+                android:textColor="@color/grey_active_light"
+                android:textSize="12sp" />
+
+
+            <TextView
+                android:id="@+id/UserCardName2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/uptoText"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:text="Shubhankar Das"
+                android:textColor="@color/grey_active_light"
+                android:textSize="12sp" />
+
+
+        </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </RelativeLayout>
 
 </com.google.android.material.card.MaterialCardView>

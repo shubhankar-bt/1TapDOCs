@@ -20,11 +20,17 @@
             android:title="Sign Out"/>
 
 
+
     </group>
 
     <item android:title="Informations" >
 
         <menu>
+
+            <item
+                android:id="@+id/rateButton"
+                android:icon="@drawable/ic_baseline_rate_review_24"
+                android:title="Rate Us"/>
 
            <item
               android:id="@+id/nav_Help_centre"

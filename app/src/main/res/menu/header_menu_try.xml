@@ -5,12 +5,9 @@
 
         <item
             android:id="@+id/header1"
-            android:title="Your Account"
+            android:title="Delete"
 
             />
-        <item
-            android:id="@+id/header2"
-            android:title="Sign Out" />
 
      <group/>
 

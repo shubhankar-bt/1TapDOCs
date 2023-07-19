@@ -5,17 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.preference.PreferenceManager
+import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.google.firebase.FirebaseApp
 import com.google.firebase.appcheck.FirebaseAppCheck
 import com.google.firebase.appcheck.safetynet.SafetyNetAppCheckProviderFactory
 import com.google.firebase.auth.FirebaseAuth
-import spencerstudios.com.bungeelib.Bungee
-import java.lang.Boolean.getBoolean
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
-
 
 
 
@@ -37,13 +36,13 @@ class MainActivity : AppCompatActivity() {
             if(user != null){
                 val dashboardIntent = Intent(this, DashboardActivity::class.java)
                 startActivity(dashboardIntent)
-                Bungee.zoom(this)
+                Animatoo.animateSwipeRight(this)
                 finish()
             }
             else{
                 val signInIntent = Intent(this, SignInActivity::class.java)
                 startActivity(signInIntent)
-                Bungee.zoom(this)
+                Animatoo.animateSwipeRight(this)
                 finish()
             }
         }, 1000)

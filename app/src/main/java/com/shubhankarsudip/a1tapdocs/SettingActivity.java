@@ -9,9 +9,11 @@ import androidx.appcompat.widget.ButtonBarLayout;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -33,6 +35,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.android.gms.auth.api.credentials.IdToken;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -51,14 +54,14 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.StorageReference;
-import com.rejowan.cutetoast.CuteToast;
 
-import spencerstudios.com.bungeelib.Bungee;
 
 public class SettingActivity extends AppCompatActivity {
 
-    ToggleButton toggleButton3, toggleButton4;
+    ToggleButton toggleButton3;
+    ToggleButton toggleButton4;
     TextView darkModeSwitch;
     private SeekBar seekBar;
     private SharedPreferences prefs;
@@ -80,6 +83,8 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_setting);
 
 
+
+
         toggleButton3 = findViewById(R.id.toggleButton3);
         toggleButton4 = findViewById(R.id.toggleButton4);
         darkModeSwitch = findViewById(R.id.darkModeSwitch);
@@ -96,9 +101,10 @@ public class SettingActivity extends AppCompatActivity {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
 
-        SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        final SharedPreferences.Editor editor = sharedPreferences.edit();
-        final boolean isDarkModeOn = sharedPreferences.getBoolean("isDarkModeOn", false);
+        SharedPreferences sharedPreferences1 = getSharedPreferences("sharedPrefs1", MODE_PRIVATE);
+        final SharedPreferences.Editor editor1 = sharedPreferences1.edit();
+        final boolean isDarkModeOn = sharedPreferences1.getBoolean("isDarkModeOn", false);
+
 
 
         if (isDarkModeOn) {
@@ -117,13 +123,13 @@ public class SettingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (isDarkModeOn) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    editor.putBoolean("isDarkModeOn", false);
-                    editor.apply();
+                    editor1.putBoolean("isDarkModeOn", false);
+                    editor1.apply();
                     darkModeSwitch.setText("Enable Dark Mode");
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    editor.putBoolean("isDarkModeOn", true);
-                    editor.apply();
+                    editor1.putBoolean("isDarkModeOn", true);
+                    editor1.apply();
                     darkModeSwitch.setText("Disable Dark Mode");
                 }
             }
@@ -132,8 +138,10 @@ public class SettingActivity extends AppCompatActivity {
         toggleButton4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    FirebaseMessaging.getInstance().subscribeToTopic("notification");
                     Toast.makeText(SettingActivity.this, "Notification Allowed", Toast.LENGTH_SHORT).show();
                 } else {
+                    FirebaseMessaging.getInstance().unsubscribeFromTopic("notification");
                     Toast.makeText(SettingActivity.this, "Notification Disabled", Toast.LENGTH_SHORT).show();
 
                 }
@@ -146,8 +154,6 @@ public class SettingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SettingActivity.this, PrivacyPolicyActivity.class);
                 startActivity(intent);
-                Bungee.slideLeft(getApplicationContext());
-                finish();
             }
         });
 
@@ -165,58 +171,74 @@ public class SettingActivity extends AppCompatActivity {
 
     public void goToHome(View view) {
         startActivity(new Intent(this, DashboardActivity.class));
-        Bungee.inAndOut(this);
+        Animatoo.animateSlideRight(this);
 
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Bungee.slideRight(this); //fire the slide left animation
+        Intent intent = new Intent(SettingActivity.this, DashboardActivity.class);
+        startActivity(intent);
+        Animatoo.animateSlideRight(this);
     }
 
+
+
     public void deleteAccount(View view) {
-        pd.setTitle("Deleting...");
-        pd.setMessage("Just a moment");
-        pd.show();
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        new AlertDialog.Builder(SettingActivity.this)
+                .setTitle("Delete Account")
+                .setMessage("Are you sure you want to delete this account? This will remove all your data.")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        pd.setTitle("Deleting...");
+                        pd.setMessage("Just a moment");
+                        pd.show();
+                        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        if (account != null && user != null) {
-            AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
-            user.reauthenticate(credential)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Log.d(TAG, "reAuthenticated");
-                            pd.setMessage("Account deleted successfully");
+                        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(SettingActivity.this);
+                        if (account != null && user != null) {
+                            AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+                            user.reauthenticate(credential)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "reAuthenticated");
+                                            pd.setMessage("Account deleted successfully");
 
-                            user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        Log.d(TAG, "User account deleted.");
+                                                        revokeAccess();
+                                                        Intent intent = new Intent(SettingActivity.this, SignInActivity.class);
+                                                        pd.dismiss();
+                                                        startActivity(intent);
+                                                    }
+
+                                                }
+                                            });
+
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
                                 @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Log.d(TAG, "User account deleted.");
-                                        revokeAccess();
-                                        Intent intent = new Intent(SettingActivity.this, SignInActivity.class);
-                                        pd.dismiss();
-                                        startActivity(intent);
-                                    }
-
+                                public void onFailure(@NonNull Exception exception) {
+                                    Log.d(TAG, "Failed to delete");
+                                    pd.setMessage("Failed to delete account");
+                                    pd.dismiss();
+                                    Toast.makeText(SettingActivity.this, "Please sign out and try after signing in again", Toast.LENGTH_LONG).show();
                                 }
                             });
 
                         }
-                    }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    Log.d(TAG, "Failed to delete");
-                    pd.setMessage("Failed to delete account");
-                    pd.dismiss();
-                    Toast.makeText(SettingActivity.this, "Please sign out and try after signing in again", Toast.LENGTH_LONG).show();
-                }
-            });
+                    }
+                })
 
-        }
+                // A null listener allows the button to dismiss the dialog and take no further action.
+                .setNegativeButton(android.R.string.no, null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
 
     }
 
@@ -231,4 +253,6 @@ public class SettingActivity extends AppCompatActivity {
     }
 
 }
+
+
 

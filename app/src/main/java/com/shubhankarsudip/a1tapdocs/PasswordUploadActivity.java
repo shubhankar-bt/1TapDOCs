@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,7 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import spencerstudios.com.bungeelib.Bungee;
+
 
 public class PasswordUploadActivity extends AppCompatActivity {
 
@@ -71,11 +72,6 @@ public class PasswordUploadActivity extends AppCompatActivity {
         PasswordAddedButton.setOnClickListener(new View.OnClickListener() {
             // @Override
             public void onClick(View v) {
-                // Toast toast= Toast.makeText(getApplicationContext(),
-                //       "Card Details Added !",Toast.LENGTH_SHORT);
-                // toast.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL, 0, 0);
-                // toast.show();
-                //   addCreditOrDebitCard.setVisibility(View.VISIBLE);
                 checkValidation();
 
             }
@@ -159,18 +155,18 @@ public class PasswordUploadActivity extends AppCompatActivity {
 
     public void goToHome (View view){
         startActivity(new Intent(this, DashboardActivity.class));
-        Bungee.inAndOut(this);
+        Animatoo.animateSlideRight(this);
 
     }
     public void OpenPasswordViewActivity (View view){
         startActivity(new Intent(this, ViewPasswordsActivity.class));
-        Bungee.slideLeft(this);
+        Animatoo.animateSlideLeft(this);
 
     }
     @Override
     public void onBackPressed(){
         super.onBackPressed();
-        Bungee.slideRight(this); //fire the slide left animation
+        Animatoo.animateSlideRight(this);
     }
 
 }

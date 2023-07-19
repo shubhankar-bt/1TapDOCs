@@ -25,6 +25,7 @@ import android.widget.Toast;
         import androidx.annotation.Nullable;
         import androidx.appcompat.app.AppCompatActivity;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.tasks.Continuation;
         import com.google.android.gms.tasks.OnCompleteListener;
@@ -47,10 +48,7 @@ import com.google.firebase.storage.UploadTask;
 import com.shubhankarsudip.a1tapdocs.ui.View_PDF_Files;
 import com.shubhankarsudip.a1tapdocs.ui.uploadPDF;
 
-import java.util.Objects;
-import java.util.concurrent.atomic.AtomicMarkableReference;
 
-import spencerstudios.com.bungeelib.Bungee;
 
 
 public class DocumentActivity2 extends AppCompatActivity {
@@ -159,14 +157,25 @@ public class DocumentActivity2 extends AppCompatActivity {
                                     }
                                 }
 
-
-                                uploadPDF uploadPDF = new uploadPDF(editPdfName.getText().toString(),url.toString(), user.getUid());
-
-                                databaseReference.child(databaseReference.push().getKey()).setValue(uploadPDF);
+                                final String uniqueKey = databaseReference.push().getKey();
 
 
-                                Toast.makeText(DocumentActivity2.this, "File uploaded", Toast.LENGTH_SHORT).show();
-                                progressDialog.dismiss();
+                                uploadPDF uploadPDF = new uploadPDF(editPdfName.getText().toString(), url.toString(), user.getUid(), uniqueKey);
+
+                                databaseReference.child(uniqueKey).setValue(uploadPDF).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Toast.makeText(DocumentActivity2.this, "File uploaded", Toast.LENGTH_SHORT).show();
+                                        progressDialog.dismiss();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception exception ) {
+                                        Toast.makeText(DocumentActivity2.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                                        progressDialog.dismiss();
+                                    }
+                                });
+
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -180,25 +189,31 @@ public class DocumentActivity2 extends AppCompatActivity {
                     double progress = (100.0*snapshot.getBytesTransferred())/snapshot.getTotalByteCount();
                     progressDialog.setMessage("Uploaded "+" "+(int) progress+"%");
 
-                }));
+
+        }));
 
     }
 
+
+
     public void openNewFile(View view){
         startActivity(new Intent(getApplicationContext(),View_PDF_Files.class));
-        Bungee.slideLeft(this);
+        Animatoo.animateSlideLeft(this);
+
     }
 
     public void goToHome (View view){
         startActivity(new Intent(this, DashboardActivity.class));
-        Bungee.inAndOut(this);
+        Animatoo.animateSlideRight(this);
 
     }
     @Override
     public void onBackPressed(){
         super.onBackPressed();
-        Bungee.slideRight(this); //fire the slide left animation
+        Animatoo.animateSlideRight(this);
     }
+
+
 
 
 }

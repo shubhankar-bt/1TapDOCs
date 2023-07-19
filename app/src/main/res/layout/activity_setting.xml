@@ -19,38 +19,38 @@
         tools:ignore="MissingConstraints" />
 
 
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:text="SETTINGS"
-            android:textColor="@color/white"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-            app:layout_constraintStart_toStartOf="@+id/toolbar"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="SETTINGS"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
-            android:id="@+id/returnHomebtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/ic_baseline_home_24"
-            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:onClick="goToHome"/>
+    <ImageButton
+        android:id="@+id/returnHomebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:onClick="goToHome"
+        android:src="@drawable/ic_baseline_home_24"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <View
         android:id="@+id/divider3"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:backgroundTint="@color/black"
         android:layout_marginTop="65dp"
         android:background="?android:attr/listDivider"
+        android:backgroundTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -98,8 +98,8 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="65dp"
-        android:backgroundTint="@color/black"
         android:background="?android:attr/listDivider"
+        android:backgroundTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/divider" />
@@ -120,8 +120,8 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginEnd="8dp"
-        android:text="ToggleButton"
         android:checked="true"
+        android:text="ToggleButton"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/divider"
         app:layout_constraintEnd_toEndOf="parent"
@@ -148,7 +148,7 @@
         android:clickable="true"
         android:contextClickable="true"
         android:text="Terms of use"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/dark_blue"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -160,9 +160,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/drawerColor"
+        android:onClick="deleteAccount"
         android:shadowRadius="10"
         android:text="Delete Your Account"
-        android:onClick="deleteAccount"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
@@ -176,7 +176,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:gravity="center_horizontal"
-        android:text="You are using 1TapDOCs app Version 1.0"
+        android:text="You are using 1TapDOCs app Version 1.0.4"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView5"
         app:layout_constraintEnd_toEndOf="parent"
@@ -207,11 +207,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clickable="true"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/divider2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/divider"
-        android:orientation="horizontal" />
+        app:layout_constraintTop_toTopOf="@+id/divider" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

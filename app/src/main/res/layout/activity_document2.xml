@@ -1,61 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/black"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:background="@color/ToolbarColor"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_home"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:background="@color/black"
+        app:title="@string/app_name"
+        app:titleTextColor="@color/white" />
 
     <TextView
         android:id="@+id/textView1"
+        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="@string/_1tapdocs"
+        android:visibility="gone"
         android:textColor="#1E88E5"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintStart_toStartOf="@+id/toolbar"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/returnHomebtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:layout_marginEnd="8dp"
-        android:src="@drawable/ic_baseline_home_24"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/white"
+        android:src="@drawable/back_24"
         android:onClick="goToHome"/>
 
     <LinearLayout
         android:id="@+id/Pdf_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        android:layout_below="@+id/toolbar_home"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="5dp"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="90dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/background_border_empty"
+        android:orientation="vertical">
+
+
 
         <androidx.cardview.widget.CardView
             android:layout_width="150dp"
             style="@style/CardView"
             android:layout_height="150dp"
+            app:cardBackgroundColor="@color/grey"
             android:layout_marginTop="32dp"
+            app:cardCornerRadius="20dp"
             android:foregroundGravity="center_horizontal"
             android:layout_gravity="center">
 
@@ -73,65 +77,101 @@
                 android:layout_gravity="bottom"
                 android:layout_height="wrap_content"
                 android:text="Choose pdf"
+                android:fontFamily="@font/poppins_medium"
                 android:gravity="center_horizontal"
-                android:textColor="@color/black"
+                android:textColor="@color/grey_active"
                 android:textSize="18sp"
-                android:layout_marginBottom="10dp"
-                android:textStyle="bold" />
-
+                android:layout_marginBottom="10dp" />
         </androidx.cardview.widget.CardView>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputLayout"
+            android:id="@+id/inputLayout2"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:helperText="Required*"
+            android:visibility="gone"
             app:helperTextTextColor="@android:color/holo_red_light"
             android:layout_marginStart="32dp"
             android:layout_marginTop="42dp"
             android:layout_marginEnd="32dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txt_pdfName"
+                android:id="@+id/txt_pdfName2"
                 android:layout_width="match_parent"
+                android:background="@drawable/background_border_empty"
                 android:textColorHint="@color/colorPrimary"
                 android:layout_height="wrap_content"
                 android:hint="Enter pdf name" />
         </com.google.android.material.textfield.TextInputLayout>
 
-    </LinearLayout>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/inputLayout"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="#758283"
+            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_pdfName"
+                android:layout_width="match_parent"
+                android:background="@drawable/background_border_empty"
+                android:textColorHint="@color/black"
+                android:layout_marginStart="10dp"
+                android:textAlignment="textStart"
+                android:fontFamily="@font/poppins"
+                android:layout_height="match_parent"
+                android:hint="Enter pdf name" />
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/uploadPdf"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="16dp"
+            android:onClick="openNewFile"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:backgroundTint="@color/green_inactive"
+            android:text="Upload"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/grey"
+            android:layout_marginTop="30dp" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_gravity="center_horizontal"
+            android:visibility="visible"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="20dp"
+            app:lottie_rawRes="@raw/contract_signing"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            />
+
+
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/button_pdfOpen"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:backgroundTint="@color/drawerColor"
-        android:backgroundTintMode="src_in"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="16dp"
         android:onClick="openNewFile"
         android:text="View Your Files"
         android:textColor="@android:color/white"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Pdf_layout" />
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_pdfOpen"
-        app:lottie_rawRes="@raw/contract_signing"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        />
+        android:layout_marginBottom="20dp" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</RelativeLayout>
