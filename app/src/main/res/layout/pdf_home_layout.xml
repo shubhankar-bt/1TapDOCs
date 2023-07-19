@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_margin="5dp"
+        android:elevation="10dp"
+        android:id="@+id/cardView"
+        app:cardCornerRadius="10dp">
+
+
+
+        <RelativeLayout
+            android:id="@+id/layout5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:background="@drawable/background_border_empty"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/textview4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:fontFamily="@font/poppins_medium"
+                android:letterSpacing=".05"
+                android:lineSpacingExtra=".1dp"
+                android:maxLines="1"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                android:text="pdf name"
+                android:textAlignment="viewStart"
+                android:textColor="@color/grey_active"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_active"
+                android:layout_below="@+id/pdfimage"/>
+
+
+            <com.github.barteksc.pdfviewer.PDFView
+                android:id="@+id/pdfimage"
+                android:layout_alignParentTop="true"
+                android:layout_width="match_parent"
+                android:scaleType="centerCrop"
+                android:layout_margin="5dp"
+                android:layout_height="120dp">
+
+            </com.github.barteksc.pdfviewer.PDFView>
+
+            <ImageView
+                android:id="@+id/more"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/more_black"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"/>
+
+
+
+
+
+        </RelativeLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
